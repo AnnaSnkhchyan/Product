@@ -90,9 +90,8 @@ CREATE TABLE `product_status` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(68) NOT NULL,
   `enabled` tinyint(1) NOT NULL,
-  UNIQUE KEY `user_idx_1` (`username`),
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -100,7 +99,6 @@ DROP TABLE IF EXISTS `authorities`;
 CREATE TABLE `authorities` (
   `username` varchar(50) NOT NULL,
   `authority` varchar(50) NOT NULL,
-  UNIQUE KEY `authorities_idx_1` (`username`),
   CONSTRAINT `authorities_ibfk_1`
   FOREIGN KEY (`username`) 
   REFERENCES `users` (`username`)
@@ -143,9 +141,9 @@ INSERT INTO `product` VALUES
     
 INSERT INTO `users` 
 VALUES 
-('john','{noop}test123',1),
-('mary','{noop}test123',1),
-('susan','{noop}test123',1);
+('john','{bcrypt}$2a$04$IDyX.EYNwq7NtH6DnSgLXuFImHHuf/3UEgNXH/GgSH23cJc9BrnyS',1),
+('mary','{bcrypt}$2a$04$IDyX.EYNwq7NtH6DnSgLXuFImHHuf/3UEgNXH/GgSH23cJc9BrnyS',1),
+('susan','{bcrypt}$2a$04$IDyX.EYNwq7NtH6DnSgLXuFImHHuf/3UEgNXH/GgSH23cJc9BrnyS',1);
  
 INSERT INTO `authorities` 
 VALUES 
